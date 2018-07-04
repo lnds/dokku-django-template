@@ -1,0 +1,66 @@
+{% extends 'base_layout.html' %}
+{% load i18n %}
+{% load bootstrap4 %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item active">{% trans 'list' %}</li>
+{% endblock %}
+{% block top_buttons %}
+    <a class="nav-link" href="{% url 'create' %}"><i class="fa fa-fw fa-plus-circle"></i> {% trans 'Crear Envío' %}</a>
+    <span class="nav-link">|</span>
+{% endblock %}
+{% block content_body %}
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i> {% trans 'Envíos' %}
+        </div>
+        <div class="card-body">
+            {% if not demos %}
+                    <div class="jumbotron">
+                        <h2>{% trans 'Empty' %}</h2>
+                        <p class="lead">{% trans 'no demo creates' %}</p>
+                        <p class="lead">
+                            <a class="btn btn-primary btn-lg" href="{% url 'create' %}" role="button"><i class="fa fa-plus-circle"></i> <small>{% trans 'Create' %}</small></a>
+                        </p>
+                    </div>
+                {% else %}
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>{% trans 'Text' %}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for d in demos %}
+                            <tr>
+                                <td>{{ d.id }}</td>
+                                <td class="text-center">
+                                    {{ d.text }}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    {% if is_paginated %}
+                        <div class="pull-right">
+                            {% bootstrap_pagination page_obj %}
+                        </div>
+                    {% endif %}
+                {% endif %}
+        </div>
+        <div class="card-footer small text-muted">
+            {% if page_obj.paginator.count == 0%}
+                {% trans 'no demos' %}
+            {% elif page_obj.paginator.count == 1 %}
+                {{ page_obj.paginator.count }} {% trans 'demo' %}
+            {% else %}
+                {{ page_obj.paginator.count }} {% trans 'demos' %}
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+{% block extra_javascript %}
+<script>
+
+</script>
+{% endblock %}

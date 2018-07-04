@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load i18n %}
+{% load bootstrap4 %}
+{% block content %}
+     <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top" id="mainNav">
+        <a class="navbar-brand" href="{% url 'home' %}">
+           <i class="fa fa-fw fa-rocket"></i> APP_NAME
+        </a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+              <li class="nav-item" data-toggle="tooltip" data-placement="right" title="{% trans 'Option 1' %}">
+                <a class="nav-link" href="{% url 'home' %}">
+                    <i class="fa fa-fw fa-th-list"></i>
+                    <span class="nav-link-text">{% trans 'List'%}</span>
+                </a>
+              </li>
+            </ul>
+            <ul class="navbar-nav sidenav-toggler">
+                <li class="nav-item">
+                    <a class="nav-link text-center" id="sidenavToggler">
+                        <i class="fa fa-fw fa-angle-left"></i>
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                {% block top_buttons %}
+                {% endblock %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">
+                        <i class="fa fa-fw fa-sign-out"></i>{% trans 'Exit' %}
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="content-wrapper">
+        <div class="container-fluid">
+            <ol class="breadcrumb">
+                {% block breadcrumb %}
+                {% endblock %}
+            </ol>
+            {% autoescape off %}{% bootstrap_messages %}{% endautoescape %}
+            {% block content_body %}
+            {% endblock %}
+        </div>
+    </div>
+    <footer class="sticky-footer">
+        <div class="container">
+            <small class="text-muted">{% trans 'version' %} {{ APP_VERSION }}</small>
+        </div>
+    </footer>
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fa fa-angle-up"></i>
+    </a>
+
+{% endblock %}

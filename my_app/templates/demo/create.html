@@ -1,0 +1,34 @@
+{% extends 'base_layout.html' %}
+{% load i18n %}
+{% load bootstrap4 %}
+{% block breadcrumb %}
+    <li class="breadcrumb-item">
+        <a href="{% url 'home' %}">{% trans 'list' %}</a>
+    </li>
+    <li class="breadcrumb-item active">{% trans 'create' %}</li>
+{% endblock %}
+{% block top_buttons %}
+{% endblock %}
+{% block content_body %}
+    <form class="" method="post" >
+        <div class="card mb-3">
+            <div class="card-header">
+                <h2>{% trans 'Create' %}</h2>
+            </div>
+            <div class="card-body">
+                {% csrf_token %}
+                {% bootstrap_form form show_label=False %}
+            </div>
+            <div class="card-footer">
+                {% buttons  class="text-center" %}
+                <button type="submit" class="btn btn-primary">
+                {% trans 'Create' %}
+                </button>
+                <a href="{% url 'home' %}" class="btn btn-link">
+                {% trans 'Cancel' %}
+                </a>
+                {% endbuttons %}
+            </div>
+        </div>
+    </form>
+{% endblock %}
