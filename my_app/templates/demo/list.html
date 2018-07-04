@@ -5,13 +5,13 @@
     <li class="breadcrumb-item active">{% trans 'list' %}</li>
 {% endblock %}
 {% block top_buttons %}
-    <a class="nav-link" href="{% url 'create' %}"><i class="fa fa-fw fa-plus-circle"></i> {% trans 'Crear Envío' %}</a>
+    <a class="nav-link" href="{% url 'create' %}"><i class="fa fa-fw fa-plus-circle"></i> {% trans 'Create' %}</a>
     <span class="nav-link">|</span>
 {% endblock %}
 {% block content_body %}
     <div class="card mb-3">
         <div class="card-header">
-            <i class="fa fa-table"></i> {% trans 'Envíos' %}
+            <i class="fa fa-table"></i> {% trans 'Demos' %}
         </div>
         <div class="card-body">
             {% if not demos %}
